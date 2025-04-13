@@ -1,7 +1,7 @@
 package org.fastcampus.user.domain;
 
 import java.util.Objects;
-import org.fastcampus.post.domain.common.PositiveIntegerCounter;
+import org.fastcampus.common.domain.PositiveIntegerCounter;
 
 // 유저 생성(id 기준 구분)
 public class User {
@@ -12,6 +12,10 @@ public class User {
     private final PositiveIntegerCounter followerCount;
 
     public User(Long id, UserInfo userInfo) {
+        if(userInfo == null) {
+            throw new IllegalArgumentException();
+        }
+
         this.id = id;
         this.info = userInfo;
         this.followingCount = new PositiveIntegerCounter();
